@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "blog_posts#index"
 
+  # /new must be before /:id in order to not be caught by dynamic id behaviour
+  get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
+  post "/blog_posts", to: "blog_posts#create", as: :blog_posts
+  
   get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
